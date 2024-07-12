@@ -3,15 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify/common/widgets/appbar/app_bar.dart';
 import 'package:spotify/common/widgets/button/basic_app_button.dart';
 import 'package:spotify/core/configs/assets/app_vectors.dart';
-import 'package:spotify/presentation/auth/pages/signin.dart';
+import 'package:spotify/presentation/auth/pages/signup.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class SignInPage extends StatelessWidget {
+  const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _signinText(context),
+      bottomNavigationBar: _signupText(context),
       appBar: BasicAppBar(
         title: SvgPicture.asset(
           AppVectors.logo,
@@ -27,13 +27,9 @@ class SignUpPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _signUpText(),
+            _signInText(),
             const SizedBox(
               height: 50,
-            ),
-            _fullNameField(context),
-            const SizedBox(
-              height: 20,
             ),
             _emailField(context),
             const SizedBox(
@@ -45,7 +41,7 @@ class SignUpPage extends StatelessWidget {
             ),
             BasicAppButton(
               onPressed: () {},
-              title: "Create Account",
+              title: "Sign In",
             ),
           ],
         ),
@@ -53,24 +49,17 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  Widget _signUpText() {
+  Widget _signInText() {
     return const Text(
-      'Sign Up',
+      'Sign In',
       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
       textAlign: TextAlign.center,
     );
   }
 
-  Widget _fullNameField(BuildContext context) {
-    return TextField(
-      decoration: const InputDecoration(hintText: 'Full Name')
-          .applyDefaults(Theme.of(context).inputDecorationTheme),
-    );
-  }
-
   Widget _emailField(BuildContext context) {
     return TextField(
-      decoration: const InputDecoration(hintText: 'Enter Email')
+      decoration: const InputDecoration(hintText: 'Enter Username or Email')
           .applyDefaults(Theme.of(context).inputDecorationTheme),
     );
   }
@@ -82,14 +71,14 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  Widget _signinText(BuildContext context) {
+  Widget _signupText(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            "Do you have an account? ",
+            "Not A Member? ",
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
           ),
           TextButton(
@@ -97,12 +86,12 @@ class SignUpPage extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => const SignInPage(),
+                  builder: (BuildContext context) => const SignUpPage(),
                 ),
               );
             },
             child: const Text(
-              "Sign In",
+              "Sign Up Now",
             ),
           )
         ],
